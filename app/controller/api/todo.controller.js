@@ -1,4 +1,4 @@
-import {TodoService} from '../../service/todo.service';
+const TodoService = require('../../service/todo.service.js');
 
 class TodoController {
     constructor() {
@@ -6,9 +6,31 @@ class TodoController {
         this.createTodo.bind(this);
     }
 
+    getTodoList(req, res) {
+        this.todoService.getAll().then(data => {
+            res.status(200).json(data);
+        });
+    }
+
     createTodo(req, res) {
-        const todo = this.todoService.create(req.body);
-        res.status(200).json(todo);
+        this.todoService.create(req.body)
+        .then(data => {
+            res.status(201).json(data);
+        });
+    }
+
+    updateTodo(req, res) {
+        this.todoService.update(req.body)
+        .then(data => {
+            res.status(200).json(data);
+        });
+    }
+
+    removeTodo(req, res) {
+        this.todoService.remove(req.params.id)
+        .then(data => {
+            res.status(200).json(data);
+        });
     }
 }
 

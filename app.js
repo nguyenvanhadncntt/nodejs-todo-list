@@ -1,14 +1,16 @@
+const RouterApi = require('./router/router');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const app = express();
-
+const Model = require('./app/models/index.js');
 class Server {
     constructor() {
         this.configResponseJson();
         this.configViewEngine();
         this.initDB();
+        this.configRouter();
         this.homePage();
         this.startServer();
     }
@@ -29,9 +31,14 @@ class Server {
         app.set('view engine', 'html');
     }
 
+    configRouter() {
+        this.todoRouter = new RouterApi();
+        app.use('/todo', this.todoRouter.getRouter());
+    }
+
     initDB() {
-        const db = require('./app/models/index.js');
-        db.sequelize.sync();
+        const model = new Model();
+        model.db.sequelize.sync();
     }
 
     startServer() {
