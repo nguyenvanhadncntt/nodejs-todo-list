@@ -6,38 +6,20 @@ class TodoService {
         const model = new Model();
         this.todoRepository = model.model('todo');
     }
-    create = (todo) => {
-        return new Promise ((resolve, reject) => {
-            this.todoRepository.create(todo).then(
-                data => {return resolve(data)})
-                .catch(error => reject(error));
-        })
+    create = async (todo) => {
+        return await this.todoRepository.create(todo);
     }
 
-    update = (todo) => {
-        return new Promise ((resolve, reject) => {
-            this.todoRepository.update(todo, {where: {id: todo.id}}).then(
-                data => {return resolve(data)})
-                .catch(error => reject(error));
-        })
+    update = async (todo) => {
+        return await this.todoRepository.update(todo, {where: {id: todo.id}});
     }
 
-    getAll = () => {
-        return new Promise ((resolve, reject) => {
-            this.todoRepository.findAll()
-            .then(data => {
-                return resolve(data);
-            })
-            .catch(error => reject(error))
-        })
+    getAll = async () => {
+        return await this.todoRepository.findAll();
     }
 
-    remove = (todoId) => {
-        return new Promise((resolve, reject) => {
-            this.todoRepository.destroy({where: {id: todoId}})
-                .then(data => {return resolve(data)})
-                .catch(error => reject(error));
-        })
+    remove = async (todoId) => {
+        return await this.todoRepository.destroy({where: {id: todoId}})
     }
 }
 

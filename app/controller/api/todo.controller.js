@@ -6,31 +6,24 @@ class TodoController {
         this.createTodo.bind(this);
     }
 
-    getTodoList(req, res) {
-        this.todoService.getAll().then(data => {
-            res.status(200).json(data);
-        });
+    async getTodoList(req, res) {
+        const data = await this.todoService.getAll();
+        res.status(200).json(data);
     }
 
-    createTodo(req, res) {
-        this.todoService.create(req.body)
-        .then(data => {
-            res.status(201).json(data);
-        });
+    async createTodo(req, res) {
+        const todo = await this.todoService.create(req.body);
+        res.status(201).json(todo);
     }
 
-    updateTodo(req, res) {
-        this.todoService.update(req.body)
-        .then(data => {
-            res.status(200).json(data);
-        });
+    async updateTodo(req, res) {
+        const todo = await this.todoService.update(req.body)
+        res.status(200).json(todo);
     }
 
-    removeTodo(req, res) {
-        this.todoService.remove(req.params.id)
-        .then(data => {
-            res.status(200).json(data);
-        });
+    async removeTodo(req, res) {
+        const data = await this.todoService.remove(req.params.id);
+        res.status(200).json(data);
     }
 }
 
