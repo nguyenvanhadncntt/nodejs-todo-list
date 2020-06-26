@@ -1,9 +1,11 @@
+const serverApi = 'http://localhost:3000/api';
+
 var title = $("#title");
 var description = $("#description");
 var todoId = $("#todoId");
 var dataList;
 function loadData() {
-    $.ajax({url: "http://localhost:3090/todo", success: function(result){
+    $.ajax({url: `${serverApi}/todos`, success: function(result){
         $('#tbody').html('');
         dataList = result;
         for (let i = 0; i < dataList.length; i++) {
@@ -13,7 +15,7 @@ function loadData() {
 }
 
 deleteTodo = (id) => {
-    $.ajax({url: 'http://localhost:3090/todo/' + id, type: 'DELETE', success: function(result){
+    $.ajax({url: `${serverApi}/todos/${id}`, type: 'DELETE', success: function(result){
         loadData();
     }});
 }
@@ -39,7 +41,7 @@ function openAddNew() {
 saveData = () => {
     if (!todoId.val()) {
         $.ajax({
-            url: '/todo',
+            url: '/api/todos',
             type: 'POST',
             contentType : "application/json; charset=utf-8",
             dataType : 'json',
@@ -53,7 +55,7 @@ saveData = () => {
             }});
     } else {
         $.ajax({
-            url: '/todo',
+            url: '/api/todos',
             type: 'PUT',
             contentType : "application/json; charset=utf-8",
             dataType : 'json',

@@ -1,0 +1,23 @@
+.todo-card {
+    background: #cfeef5;
+    padding: 20px;
+    text-align: left !important;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 17px;
+    font-weight: 600;
+    display: block;
+}
+
+.description {
+    font-size: 23px;
+    font-weight: 600;
+    display: block;
+}
+
+.todo-card:hover {
+    background: linear-gradient(90deg, rgb(124, 121, 183) 0%, rgb(141, 141, 206) 35%, rgba(0,212,255,1) 100%);
+    color: white !important;
+}

@@ -5,7 +5,7 @@ class Model {
 
     constructor() {
         this.initSequelize();
-        this.createTodoModel();
+        this.createModel();
     }
 
     initSequelize() {
@@ -24,8 +24,13 @@ class Model {
         this.db.sequelize = this.sequelize;
     }
 
-    createTodoModel() {
-        this.db.todo = require('./todo.model.js')(this.sequelize, Sequelize);
+    createModel() {
+        const user = require('./user.model.js')(this.sequelize, Sequelize);
+        const todo = require('./todo.model.js')(this.sequelize, Sequelize);
+        todo.belongsTo(user);
+        user.hasMany(todo);
+        this.db.todo = todo;
+        this.db.user = user;
     }
 
     model(modelName) {

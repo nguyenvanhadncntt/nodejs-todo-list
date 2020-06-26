@@ -22,7 +22,7 @@ class TodoController {
     }
 
     async removeTodo(req, res) {
-        const data = await this.todoService.remove(req.params.id);
+        const data =  this.todoService.remove(req.params.id);
         res.status(200).json(data);
     }
 }

@@ -5,12 +5,11 @@ module.exports = (sequelize, Sequelize) => {
         },
         description: {
             type: Sequelize.STRING
-        }
+        },
     },
     {
         freezeTableName: true,
         tableName: 'todo'
     });
-
     return todo;
 }
