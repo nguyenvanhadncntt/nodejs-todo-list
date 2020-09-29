@@ -6,13 +6,13 @@
 }
 
 .title {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 600;
     display: block;
 }
 
 .description {
-    font-size: 23px;
+    font-size: 17px;
     font-weight: 600;
     display: block;
 }
@@ -20,4 +20,16 @@
 .todo-card:hover {
     background: linear-gradient(90deg, rgb(124, 121, 183) 0%, rgb(141, 141, 206) 35%, rgba(0,212,255,1) 100%);
     color: white !important;
+}
+
+.icon-section {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.icon {
+    width: 20px;
+    cursor: pointer;
 }
